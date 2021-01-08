@@ -1,0 +1,4 @@
+// this file is needed when needing to extend the default Babel configs
+{
+  "presets": ["next/babel"] // babel preset
+}

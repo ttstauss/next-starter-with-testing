@@ -6,12 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "is-ci \"test:coverage\" \"test:watch\"",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "check-types": "tsc",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|ts|tsx|json)\"",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|ts|tsx)\"",
     "check-format": "npm run prettier -- --list-different",
     "format": "npm run prettier -- --write",
-    "lint": "eslint --ignore-path .gitignore --ext .js .",
-    "validate": "npm-run-all --parallel check-types check-format lint"
+    "lint": "jest --config test/jest.lint.js",
+    "validate": "npm-run-all --parallel check-types check-format test",
+    "setup": "npm install && npm run validate"
+  },
+  "jest-runner-eslint": {
+    "cliOptions": {
+      "ignorePath": "./.gitignore"
+    }
   },
   "dependencies": {
     "next": "10.0.5",
@@ -19,6 +29,8 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/react": "^11.2.3",
     "@types/node": "^14.14.20",
     "@types/react": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.12.0",
@@ -28,6 +40,12 @@
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-react": "^7.22.0",
     "husky": "^4.3.7",
+    "identity-obj-proxy": "^3.0.0",
+    "is-ci-cli": "^2.1.2",
+    "jest": "^26.6.3",
+    "jest-runner-eslint": "^0.10.0",
+    "jest-watch-select-projects": "^2.0.0",
+    "jest-watch-typeahead": "^0.6.1",
     "lint-staged": "^10.5.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
