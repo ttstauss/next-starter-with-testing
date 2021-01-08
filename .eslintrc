@@ -1,0 +1,41 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2021, // version of ECMAScript syntax used
+    "sourceType": "module", // code is in ECMAScript modules
+    "ecmaFeatures": {
+      "jsx": true // enable JSX
+    }
+  },
+  "extends": [
+    "eslint:recommended", // enable core eslint rules
+    "eslint-config-prettier", // don't lint errors that prettier will fix automagically
+    "plugin:react/recommended" // React specific linting rules for ESLint
+  ],
+  "rules": {
+    "strict": ["error", "never"], // disable strict mode error as NextJS is Strict Mode-compliant
+    "react/react-in-jsx-scope": "off", // needed for NextJS's jsx without react import
+    "react/prop-types": "off" // disable prop-types as we use typescript for type checking
+  },
+  "env": {
+    "browser": true, // browser global variables
+    "node": true, // Node.js global variables and Node.js scoping
+    "jest": true // Jest global variables
+  },
+  "overrides": [
+    {
+      "parser": "@typescript-eslint/parser", // An ESLint parser which leverages TypeScript ESTree to allow for ESLint to lint TypeScript source code
+      "files": "**/*.+(ts|tsx)", // files to disable rules
+      "parserOptions": {
+        "project": "./tsconfig.json" // parser config file
+      },
+      "plugins": [
+        "@typescript-eslint/eslint-plugin" // an ESLint plugin which provides lint rules for TypeScript codebases
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended", // disables rules from eslint:recommended which are already handled by TypeScript
+        "plugin:@typescript-eslint/recommended", // enables rules that make sense due to TS's typechecking / transpilation.
+        "eslint-config-prettier/@typescript-eslint" // don't lint errors that prettier will fix automagically
+      ]
+    }
+  ]
+}
