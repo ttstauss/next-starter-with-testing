@@ -8,7 +8,7 @@
   },
   "extends": [
     "eslint:recommended", // enable core eslint rules
-    "eslint-config-prettier", // don't lint errors that prettier will fix automagically
+    "prettier", // don't lint errors that prettier will fix automagically
     "plugin:react/recommended" // React specific linting rules for ESLint
   ],
   "rules": {
@@ -34,7 +34,7 @@
       "extends": [
         "plugin:@typescript-eslint/eslint-recommended", // disables rules from eslint:recommended which are already handled by TypeScript
         "plugin:@typescript-eslint/recommended", // enables rules that make sense due to TS's typechecking / transpilation.
-        "eslint-config-prettier/@typescript-eslint" // don't lint errors that prettier will fix automagically
+        "prettier" // don't lint errors that prettier will fix automagically
       ]
     }
   ]
